@@ -1,0 +1,22 @@
+body{
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    animation: splash 4s ease 0s 1;
+}
+#version{
+    position: absolute;
+    margin: 0;
+    top:200px;
+    left:26px;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+@keyframes splash {
+    0%{ opacity: 0; }
+    50%{ opacity: 1; }
+    100%{ opacity: 1; }
+}

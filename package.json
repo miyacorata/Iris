@@ -1,0 +1,15 @@
+{
+  "name": "iris",
+  "version": "1.0.0",
+  "description": "Gaming Browser for THE IDOLM@STER SHINY COLORS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "miyacorata",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^1.8.4",
+    "node-notifier": "^5.2.1"
+  }
+}
