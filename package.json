@@ -9,7 +9,7 @@
   "author": "miyacorata",
   "license": "MIT",
   "dependencies": {
-    "electron": "^1.8.4",
+    "electron": "^1.8.8",
     "node-notifier": "^5.2.1"
   }
 }

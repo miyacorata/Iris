@@ -58,7 +58,11 @@ app.on("ready",() => {
 				sound:true
 			}
 		);
-    }, 5000);
+	}, 5000);
+	mainWindow.on("focus",() => {
+		mainWindow.webContents.send('focus');
+		
+	});
 });
 
 //# MENU #//
@@ -116,13 +120,15 @@ const templateMenu = [
                         if(focusedWindow.isFullScreen()){
 							focusedWindow.setFullScreen(false);
 							focusedWindow.setMenuBarVisibility(true);
+							focusedWindow.setAutoHideMenuBar(false);
                         }else{
 							focusedWindow.setFullScreen(true);
 							focusedWindow.setMenuBarVisibility(false);
+							focusedWindow.setAutoHideMenuBar(true);
                         }
                     }
                 }
-            },
+			},
 			{
 				label: '最前面表示(&T)',
 				type: 'checkbox',
@@ -180,7 +186,7 @@ const templateMenu = [
 				label: 'GitHub Wiki(&W)',
 				accelerator: 'F1',
 				click() { shell.openExternal('https://github.com/miyacorata/Aschenputtel/wiki'); }
-			},
+			},*/
 			{
 				label: '更新の確認(&C)',
 				click() {
@@ -194,12 +200,12 @@ const templateMenu = [
 						},
 						(key) => {
 							if (key === 0) {
-								shell.openExternal('https://github.com/miyacorata/Aschenputtel/releases');
+								shell.openExternal('https://github.com/miyacorata/Iris/releases');
 							}
 						}
 					);
 				}
-			},*/
+			},
 			{
 				label: 'Irisについて(&A)',
 				click() {

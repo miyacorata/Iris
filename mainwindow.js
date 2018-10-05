@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded',() => {
     //gotooutofgame
     webview.addEventListener("will-navigate",(e) => {
         if(!e.url.match(/^https?:\/\/shinycolors\.enza\.fun\/(|[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+)$/)){
-            dialog.showMessageBox(
+            /*dialog.showMessageBox(
                 {
                     type: 'warning',
                     buttons: ['Back','OK'],
@@ -55,6 +55,14 @@ document.addEventListener('DOMContentLoaded',() => {
                     if(key === 0){
                         webview.executeJavaScript('history.back();');
                     }
+                }
+            );*/
+            notifier.notify(
+                {
+                    title:'Iris',
+                    subtitle:'ゲーム外へのナビゲーション',
+                    message:'ゲームに戻れなくなった場合はアプリケーションのリセット(Ctrl+R)を使用できます',
+                    sound:true
                 }
             );
         }else{
@@ -70,7 +78,7 @@ document.addEventListener('DOMContentLoaded',() => {
             notifier.notify(
                 {
                     title:'ゲームに復帰しました',
-                    message:'動作が安定しない場合はアプリケーションのリセット(Ctrl+R)をお試しください。',
+                    message:'動作が安定しない場合はアプリケーションのリセット(Ctrl+R)をお試しください',
                     sound:true
                 }
             );
@@ -85,7 +93,7 @@ ipcRenderer.on('devtool',() => {
 
 ipcRenderer.on('link',(item,url) => {
     if(!url.match(/^https?(:\/\/shinycolors\.enza\.fun\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+)$/)){
-        dialog.showMessageBox(
+        /*dialog.showMessageBox(
             {
                 type: 'warning',
                 buttons: ['OK'],
@@ -93,7 +101,25 @@ ipcRenderer.on('link',(item,url) => {
                 message: 'ゲーム外に移動しました',
                 detail: 'ゲームに戻る場合はアプリケーションのリセット(Ctrl+R)を利用してください'
             }
+        );*/
+        notifier.notify(
+            {
+                title:'ゲーム外へ移動しました',
+                message:'ゲームに戻れなくなった場合はアプリケーションのリセット(Ctrl+R)を使用できます',
+                sound:true
+            }
         );
         webview.loadURL(url);
     }
 });
+
+ipcRenderer.on('focus',() => {
+    let canvas = document.getElementsByTagName('canvas');
+    console.info("Window Focused.");
+    if(canvas[0]){
+        canvas[0].focus();
+        console.info("Canvas area Focused!");
+    }else{
+        console.error("Canvas area focusing failed!");
+    }
+})
